@@ -1,0 +1,61 @@
+﻿@page "/users"
+@rendermode InteractiveServer
+@using labb.Models
+
+
+<h3>Användare</h3>
+
+@if (users == null)
+{
+    <p>Laddar användare...</p>
+}
+else if (showUsersList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Namn</th>
+                <th>Email</th>
+                <th>Adress</th>
+                <th>Företag</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in showUsersList)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Address.Street, @user.Address.City, @user.Address.ZipCode</td>
+                    <td>@user.Company.Name, @user.Company.CatchPhrase</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-primary" @onclick="ShowAllUsers">Visa alla</button>
+}
+
+
+@code {
+    private List<User> users;
+    private List<User> showUsersList;
+    private bool showAll = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+
+        var userData = new UserData();
+        users = userData.GetUsers();
+
+        showUsersList = users.OrderBy(u => u.Name).Take(5).ToList();
+    }
+
+    public void ShowAllUsers()
+    {
+        showUsersList = users.OrderBy(u => u.Name).ToList();
+        showAll = true;
+
+        StateHasChanged();
+    }
+}

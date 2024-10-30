@@ -1,0 +1,79 @@
+﻿@page "/userDetails"
+@rendermode InteractiveServer
+@using labb.Models
+@using System.ComponentModel.DataAnnotations
+
+
+
+@if (showForm) {
+    <EditForm Model="@user" OnValidSubmit="@HandleValidSubmit" FormName="userDetails">
+   
+
+        <h3>Ny Användare</h3>
+        <br />
+    <div>
+        <label for="name">Namn:</label>
+        <InputText class="form-control" style="width: 200px;"  @bind-Value="user.Name"/>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+            <InputText id="email" class="form-control" style="width: 200px;" @bind-Value="user.Email" />
+    </div>
+    <br />
+    <h4>Adress</h4>
+    <br />
+    <div>
+        <label for="street">Gata:</label>
+         <InputText id="street" class="form-control" style="width: 200px;" @bind-Value="user.Address.Street" />
+    </div>
+    <div>
+        <label for="city">Stad:</label>
+            <InputText id="city" class="form-control" style="width: 200px;" @bind-Value="user.Address.City" />
+    </div>
+    <div>
+        <label for="zipcode">Postnummer:</label>
+            <InputText id="zipcode" class="form-control" style="width: 200px;"  @bind-Value="user.Address.ZipCode" />
+    </div>
+    <br />
+    <h4>Företag</h4>
+    <br />
+    <div>
+        <label for="companyName">Företagsnamn:</label>
+            <InputText id="companyName" class="form-control" style="width: 200px;"  @bind-Value="user.Company.Name" />
+    </div>
+    <div>
+        <label for="catchphrase">Slogan:</label>
+         <InputText id="catchphrase" class="form-control" style="width: 200px;" @bind-Value="user.Company.CatchPhrase" />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Spara</button>
+</EditForm>
+
+} else {
+    <h1>Tack! Du har sparat följande användare:</h1>
+    <p>@user.Name</p>
+    <p>@user.Email</p>
+    <p>@user.Address.City</p>
+    <p>@user.Address.Street</p>
+    <p>@user.Address.ZipCode</p>
+    <p>@user.Company.Name</p>
+    <p>@user.Company.CatchPhrase</p>
+  
+}
+
+@code {
+    private bool showForm = true;
+
+    private User user = new User
+        {
+            Address = new Address(),
+            Company = new Company()
+        };
+
+    private void HandleValidSubmit()
+    {
+        showForm = false;
+
+    }
+
+}

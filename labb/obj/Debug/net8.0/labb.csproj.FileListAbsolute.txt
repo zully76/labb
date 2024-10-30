@@ -27,3 +27,4 @@ C:\Users\zuley\OneDrive\Escritorio\VSProjekt\labb\labb\labb\obj\Debug\net8.0\ref
 C:\Users\zuley\OneDrive\Escritorio\VSProjekt\labb\labb\labb\obj\Debug\net8.0\labb.pdb
 C:\Users\zuley\OneDrive\Escritorio\VSProjekt\labb\labb\labb\obj\Debug\net8.0\labb.genruntimeconfig.cache
 C:\Users\zuley\OneDrive\Escritorio\VSProjekt\labb\labb\labb\obj\Debug\net8.0\ref\labb.dll
+C:\Users\zuley\OneDrive\Escritorio\VSProjekt\labb\labb\labb\obj\Debug\net8.0\labb.sourcelink.json
