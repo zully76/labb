@@ -1,4 +1,4 @@
-﻿@page "/userDetails"
+﻿@page "/userDetails" 
 @rendermode InteractiveServer
 @using labb.Models
 @using System.ComponentModel.DataAnnotations
@@ -7,8 +7,6 @@
 
 @if (showForm) {
     <EditForm Model="@user" OnValidSubmit="@HandleValidSubmit" FormName="userDetails">
-   
-
         <h3>Ny Användare</h3>
         <br />
     <div>
@@ -53,17 +51,16 @@
     <h1>Tack! Du har sparat följande användare:</h1>
     <p>Name: @user.Name</p>
     <p>Email: @user.Email</p>
-    <p>Stad: @user.Address.City</p>
-    <p>Gata: @user.Address.Street</p>
-    <p>Postnummer: @user.Address.ZipCode</p>
-    <p>Foretag: @user.Company.Name</p>
-    <p>Slogan: @user.Company.CatchPhrase</p>
+    <p>Stad: @user.Address?.City</p>
+    <p>Gata: @user.Address?.Street</p>
+    <p>Postnummer: @user.Address?.ZipCode</p>
+    <p>Företag: @user.Company?.Name</p>
+    <p>Slogan: @user.Company?.CatchPhrase</p>
   
 }
 
 @code {
     private bool showForm = true;
-
     private User user = new User
         {
             Address = new Address(),
@@ -73,7 +70,5 @@
     private void HandleValidSubmit()
     {
         showForm = false;
-
     }
-
 }

@@ -4,7 +4,6 @@
 
 
 <h3>Användare</h3>
-
 @if (users == null)
 {
     <p>Laddar användare...</p>
@@ -26,8 +25,8 @@ else if (showUsersList.Count > 0)
                 <tr>
                     <td>@user.Name</td>
                     <td>@user.Email</td>
-                    <td>@user.Address.Street, @user.Address.City, @user.Address.ZipCode</td>
-                    <td>@user.Company.Name, @user.Company.CatchPhrase</td>
+                    <td>@user.Address?.Street, @user.Address?.City, @user.Address?.ZipCode</td>
+                    <td>@user.Company?.Name, @user.Company?.CatchPhrase</td>
                 </tr>
             }
         </tbody>
@@ -37,9 +36,9 @@ else if (showUsersList.Count > 0)
 
 
 @code {
-    private List<User> users;
-    private List<User> showUsersList;
-    private bool showAll = false;
+    private List<User> users = new List<User>();
+    private List<User> showUsersList = new List<User>();
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,7 +53,6 @@ else if (showUsersList.Count > 0)
     public void ShowAllUsers()
     {
         showUsersList = users.OrderBy(u => u.Name).ToList();
-        showAll = true;
 
         StateHasChanged();
     }
